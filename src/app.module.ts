@@ -3,11 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import * as redisCacheStore from 'cache-manager-ioredis';
 @Module({
   imports: [
     CatsModule,
     CacheModule.register({
-      isGlobal: true, //기본 ttl 5초, 캐시는 최대 100개
+      isGlobal: true,
+      store: redisCacheStore,
+      host: 'localhost',
+      port: '6379',
     }),
   ],
   controllers: [AppController],
