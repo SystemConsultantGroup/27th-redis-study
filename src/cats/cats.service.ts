@@ -1,13 +1,10 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Cache } from 'cache-manager';
+import { Injectable } from '@nestjs/common';
 @Injectable()
 export class CatsService {
   private cats = [];
 
-  constructor(@Inject() private cacheManger: Cache) {}
-
   async getAll() {
     console.log('not cached');
-    return await this.cats;
+    return this.cats;
   }
 }
