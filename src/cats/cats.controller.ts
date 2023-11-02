@@ -7,10 +7,10 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { CacheInterceptor } from '@nestjs/cache-manager';
+import { HttpCacheInterceptor } from 'src/Interceptors/httpCacheInterceptor';
 
 @Controller('cats')
-@UseInterceptors(CacheInterceptor)
+@UseInterceptors(HttpCacheInterceptor)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
